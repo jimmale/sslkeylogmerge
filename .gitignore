@@ -19,3 +19,9 @@
 
 # Go workspace file
 go.work
+
+# idea Directory
+.idea
+
+# built executable
+sslkeylogmerge
