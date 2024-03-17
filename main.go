@@ -152,7 +152,10 @@ func HandleWatcher(ctx *cli.Context, watcher *fsnotify.Watcher, wg *sync.WaitGro
 func ReadFile(ctx *cli.Context, wg *sync.WaitGroup, inFilePath string, output *SyncWriter) {
 	defer wg.Done()
 
-	if filepath.Abs(inFilePath) == filepath.Abs(ctx.String("output")) {
+	inFileAbs, _ := filepath.Abs(inFilePath)
+	outFileAbs, _ := filepath.Abs(ctx.String("output"))
+
+	if inFileAbs == outFileAbs {
 		fmt.Println("Ignoring output file as input in order to avoid infinite loop")
 		return
 	}
